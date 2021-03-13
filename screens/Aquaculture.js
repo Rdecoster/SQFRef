@@ -1,18 +1,20 @@
 import React from 'react';
 import { SafeAreaView, Text, FlatList, StyleSheet } from 'react-native';
 import ClauseNum from '../components/ClauseNum.js'
-import Data from './../assets/datajs/Aquaculture9.js';
 
-const COLORS = Data
-const Aquaculture9 = () => {
+// rename Aquaculture to modules or something distingishing?
 
+const Aquaculture9 = ({ route }) => {
+  // destructured the props from navigation see homepage
+  const { module, moduleName } = route.params;
+  console.log(route)
   return (
     <SafeAreaView>
       <FlatList
-        data={COLORS}
-        renderItem={({ item }) => <ClauseNum clause={item} />}
+        data={module}
+        renderItem={( {item} ) => <ClauseNum clause={item} />}
         style={styles.container}
-        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+        ListHeaderComponent={<Text style={styles.text}>test</Text>}
       />
 
     </SafeAreaView>
