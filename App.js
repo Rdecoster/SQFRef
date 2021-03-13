@@ -1,27 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
-import ClauseNum from './components/ClauseNum.js';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+// import ClauseNum from './components/ClauseNum.js';
+import Aquaculture9 from './screens/Aquaculture.js';
+import Home from './screens/Home.js';
 import Data from './assets/datajs/Aquaculture9.js';
+
+const Stack = createStackNavigator();
 
 let COLORS = Data;
 const App = () => {
   return (
-    <SafeAreaView>
-      {/* <View style={styles.container}>
-        <Text style={styles.heading}>
-          Here are some boxes of different colours
-        </Text>
-        <ClauseNum />
-      </View> */}
-      <FlatList
-        data={COLORS}
-        renderItem={({ item }) => <ClauseNum clause={item} />}
-        style={styles.container}
-        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="test" component={Aquaculture9} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
 
