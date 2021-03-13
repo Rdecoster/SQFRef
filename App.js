@@ -3,9 +3,9 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import ClauseNum from './components/ClauseNum.js';
 
-import Data from './assets/Aquaculture9.js'
+import Data from './assets/datajs/Aquaculture9.js';
 
-let COLORS = Data
+let COLORS = Data;
 const App = () => {
   return (
     <SafeAreaView>
@@ -17,11 +17,10 @@ const App = () => {
       </View> */}
       <FlatList
         data={COLORS}
-        renderItem = {({item}) => (
-          <ClauseNum />)}
-
-        style ={styles.container}
-    />
+        renderItem={({ item }) => <ClauseNum clause={item} />}
+        style={styles.container}
+        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+      />
     </SafeAreaView>
   );
 };

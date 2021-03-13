@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ClauseNum = () => {
+const ClauseNum = (props) => {
+  console.log(props,"myclause")
   return (
     <View style={styles.box}>
-      <Text> Hello from Text</Text>
+      <Text>  {props.clause[0]}
+      </Text>
+      <Text>{props.clause[1]}</Text>
     </View>
   );
 };
