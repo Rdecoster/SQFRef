@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
           <Text style = {styles.list}>{item.cheese[0].clause}</Text>
         </TouchableOpacity>
       )}
-      ListHeaderComponent={<TouchableOpacity onPress={()=> {navigation.navigate('Bookedmarked')}}>
+      ListHeaderComponent={<TouchableOpacity onPress={()=> {navigation.navigate('BookedMarked')}}>
         <Text>
           Lanuch Modal
         </Text>
