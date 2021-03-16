@@ -6,20 +6,32 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Aquaculture9 from './screens/Aquaculture.js';
 import Home from './screens/Home.js';
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator();
 
-const Stack = createStackNavigator();
+const MainStackScreen = () => {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen
+        name="test"
+        component={Aquaculture9}
+        options={({ route }) => ({ title: route.params.moduleName })}
+      />
+    </MainStack.Navigator>
+  );
+};
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="test"
-          component={Aquaculture9}
-          options={({ route }) => ({ title: route.params.moduleName })}
+      <RootStack.Navigator mode="modal">
+       <RootStack.Screen
+          name='main'
+          component={MainStackScreen}
+          options={{ headerShown: false }}
         />
-      </Stack.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
