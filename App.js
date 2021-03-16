@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Aquaculture9 from './screens/Aquaculture.js';
 import Home from './screens/Home.js';
+import BookedMarked from './screens/Home.js';
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
 
@@ -31,6 +32,13 @@ const App = () => {
           component={MainStackScreen}
           options={{ headerShown: false }}
         />
+        <RootStack.Screen
+        name ='Bookedmarked'
+        component={BookedMarked}
+
+        >
+
+        </RootStack.Screen>
       </RootStack.Navigator>
     </NavigationContainer>
   );

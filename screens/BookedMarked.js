@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { View, Text} from 'react-native'
 
-const BookedMarked = () =>{
-  return(
+const BookedMarked = () => {
+  return (
     <View>
       <Text> Hello I am Modal</Text>
     </View>
