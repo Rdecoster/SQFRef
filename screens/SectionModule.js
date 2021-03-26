@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import ClauseNum from '../components/ClauseNum.js';
 
-
 const SectionModule = ({ route }) => {
   const { module, moduleName } = route.params;
   const DATA = module;

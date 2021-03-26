@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useState, createContext} from 'react';
+import React, { useState, createContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import 'react-native-gesture-handler';
 import SectionModule from './screens/SectionModule.js';
 import Home from './screens/Home.js';
 import BookedMarked from './screens/BookedMarked.js';
@@ -17,32 +17,31 @@ const MainStack = createStackNavigator();
 const MainStackScreen = () => {
   const [savedClause, addClause] = useState([]);
 
-
   return (
     <ClauseContext.Provider value={[savedClause, addClause]}>
-    <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen
-        name="sub"
-        component={SubHome}
-        options={({ route }) => ({ title: route.params.moduleName })}
-      />
-      <MainStack.Screen
-        name="sub2"
-        component={SubHome}
-        options={({ route }) => ({ title: route.params.moduleName })}
-      />
-      <MainStack.Screen
-        name="sub3"
-        component={ClauseScreen}
-        options={({ route }) => ({ title: route.params.moduleName })}
-      />
-      <MainStack.Screen
-        name="test"
-        component={SectionModule}
-        options={({ route }) => ({ title: route.params.moduleName })}
-      />
-    </MainStack.Navigator>
+      <MainStack.Navigator>
+        <MainStack.Screen name="Home" component={Home} />
+        <MainStack.Screen
+          name="sub"
+          component={SubHome}
+          options={({ route }) => ({ title: route.params.moduleName })}
+        />
+        <MainStack.Screen
+          name="sub2"
+          component={SubHome}
+          options={({ route }) => ({ title: route.params.moduleName })}
+        />
+        <MainStack.Screen
+          name="sub3"
+          component={ClauseScreen}
+          options={({ route }) => ({ title: route.params.moduleName })}
+        />
+        <MainStack.Screen
+          name="test"
+          component={SectionModule}
+          options={({ route }) => ({ title: route.params.moduleName })}
+        />
+      </MainStack.Navigator>
     </ClauseContext.Provider>
   );
 };

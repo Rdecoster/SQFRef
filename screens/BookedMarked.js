@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ClauseNum from '../components/ClauseNum.js';
-import SaveClause from '../components/SaveClause.js'
+import SaveClause from '../components/SaveClause.js';
 const BookedMarked = (props) => {
   console.log(props);
   const module = props.route.params.module;

@@ -1,11 +1,28 @@
-import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useContext } from 'react';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import ClauseContext from './ClauseContext';
+
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+const LeftActions = (progress, dragX) => {
+  const scale = dragX.interpolate({
+    inputRange: [0, 100],
+    outputRange: [0, 1],
+    extrapolate: 'clamp',
+  });
+  return (
+    <View style={styles.leftActions}>
+      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
+        Add to Bookmark
+      </Animated.Text>
+    </View>
+  );
+};
+
 const ClauseNum = (props) => {
   const [savedClause, addClause] = useContext(ClauseContext);
-  function AddClause(e) {
+  function AddClause() {
     console.log('I was clicked!!!!!!!', props);
-e.preventDefault()
+
     addClause([
       ...savedClause,
       { clause: props.clause.clause, text: props.clause.text },
@@ -13,13 +30,13 @@ e.preventDefault()
   }
 
   return (
-    <TouchableOpacity onPress={(e) => AddClause(e)}>
+    <Swipeable renderLeftActions={LeftActions} onSwipeableLeftOpen={AddClause}>
       <View style={styles.box}>
         <Text style={styles.text}>{props.clause.clause}</Text>
 
         <Text style={styles.text}>{props.clause.text}</Text>
       </View>
-    </TouchableOpacity>
+    </Swipeable>
   );
 };
 
@@ -30,14 +47,24 @@ const styles = StyleSheet.create({
   box: {
     padding: 10,
     borderRadius: 3,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 10,
-    backgroundColor: "#268bd2",
+    backgroundColor: '#268bd2',
   },
   text: {
-    backgroundColor: "grey",
-    width: "100%",
+    backgroundColor: 'grey',
+    width: '100%',
+  },
+  leftActions: {
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  actionText: {
+    color: 'white',
+    fontWeight: '600',
+    padding: 20,
   },
 });
 
