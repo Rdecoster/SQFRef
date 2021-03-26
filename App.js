@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React,{useState, createContext} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,11 +9,17 @@ import Home from './screens/Home.js';
 import BookedMarked from './screens/BookedMarked.js';
 import SubHome from './screens/SubHome.js';
 import ClauseScreen from './screens/ClauseScreen.js';
+import ClauseContext from './components/ClauseContext.js';
+
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
+  const [savedClause, addClause] = useState([]);
+
+
   return (
+    <ClauseContext.Provider value={[savedClause, addClause]}>
     <MainStack.Navigator>
       <MainStack.Screen name="Home" component={Home} />
       <MainStack.Screen
@@ -37,6 +43,7 @@ const MainStackScreen = () => {
         options={({ route }) => ({ title: route.params.moduleName })}
       />
     </MainStack.Navigator>
+    </ClauseContext.Provider>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
 import Aquaculture9 from './../assets/datajs/Aquaculture9.js';
 import PrimaryAnimalProduction from './../assets/datajs/PrimaryAnimalProduction.js';
 import StorageDistribution from './../assets/datajs/StorageDistribution.js';
+import ClauseContext from '../components/ClauseContext.js';
 
 let list = [Aquaculture9, PrimaryAnimalProduction, StorageDistribution];
 
@@ -19,11 +20,10 @@ let transformed = list.map((item) => {
 });
 
 const DATA = transformed;
-console.log(DATA, 'Data');
 
 const Home = ({ navigation }) => {
-  console.log('my data', DATA);
-  console.log('hi from home screen ');
+  const [savedClause, addClause] = React.useContext(ClauseContext);
+  console.log(savedClause, 'saved clause in home.js');
   return (
     <FlatList
       style={styles.container}
@@ -44,7 +44,10 @@ const Home = ({ navigation }) => {
       ListHeaderComponent={
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('BookedMarked');
+            navigation.navigate('BookedMarked', {
+              module: savedClause,
+              moduleName: 'testname for bookedmark',
+            });
           }}
         >
           <Text>Lanuch Modal</Text>

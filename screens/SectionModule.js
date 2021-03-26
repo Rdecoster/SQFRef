@@ -8,22 +8,18 @@ import {
 } from 'react-native';
 import ClauseNum from '../components/ClauseNum.js';
 
-// rename Aquaculture to modules or something distingishing?
 
 const SectionModule = ({ route }) => {
-  console.log('hello from submenu/home');
   const { module, moduleName } = route.params;
   const DATA = module;
+  console.log(DATA, 'from section module.js');
 
   return (
     <SafeAreaView>
-      section modeule
       <FlatList
         data={DATA}
         renderItem={({ item }) => (
-          <TouchableOpacity>
-            <ClauseNum clause={item} name={module[item]} data={module[item]} />
-          </TouchableOpacity>
+          <ClauseNum clause={item} name={module[item]} data={module[item]} />
         )}
         style={styles.container}
         ListHeaderComponent={<Text style={styles.text}>test</Text>}

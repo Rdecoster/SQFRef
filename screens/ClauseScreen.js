@@ -10,9 +10,8 @@ import {
 import ClauseNum from '../components/ClauseNum.js';
 
 const ClauseScreen = ({ navigation, route }) => {
-  console.log('hi from clause screen ');
   const { module, moduleName } = route.params;
-  console.log(module);
+
   const DATA = Object.keys(module);
   DATA.shift();
 

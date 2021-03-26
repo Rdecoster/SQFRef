@@ -10,13 +10,12 @@ import {
 import ClauseNum from '../components/ClauseNum.js';
 
 const SubMenu = ({ navigation, route }) => {
-  console.log('hello from submenu/home');
   const { module, moduleName } = route.params;
-  console.log(module);
   const DATA = Object.keys(module);
   DATA.shift();
+  DATA.shift();
 
-  console.log(DATA);
+  console.log(DATA, 'From subhome');
   return (
     <FlatList
       style={styles.container}
