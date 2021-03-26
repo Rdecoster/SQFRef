@@ -1,15 +1,37 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import ClauseContext from './ClauseContext';
-const ClauseNum = (props) => {
-  return (
-    <TouchableOpacity>
-      <View style={styles.box}>
-        <Text style={styles.text}>{props.clause.clause}</Text>
 
-        <Text style={styles.text}>{props.clause.text}</Text>
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import LeftActions from './LeftActions.js';
+const SaveClause = ({ clause, onSwipeFromLeft }) => {
+  function AddClause() {
+    console.log('I was clicked!!!!!!!');
+
+    // addClause([
+    //   ...savedClause,
+    //   { clause: props.clause.clause, text: props.clause.text },
+    // ]);
+  }
+
+  return (
+    <Swipeable
+      renderLeftActions={(progress, dragX, onPress) => (
+        <LeftActions
+          progress={progress}
+          dragX={dragX}
+          onPress={AddClause}
+          text={'Delete'}
+          color="green"
+        />
+      )}
+    >
+      <View style={styles.box}>
+        <Text style={styles.text}>{clause.clause}</Text>
+
+        <Text style={styles.text}>{clause.text}</Text>
       </View>
-    </TouchableOpacity>
+    </Swipeable>
   );
 };
 
@@ -31,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClauseNum;
+export default SaveClause;

@@ -1,40 +1,55 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+} from 'react-native';
 import ClauseContext from './ClauseContext';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-const LeftActions = (progress, dragX) => {
-  const scale = dragX.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, 1],
-    extrapolate: 'clamp',
-  });
-  return (
-    <View style={styles.leftActions}>
-      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
-        Add to Bookmark
-      </Animated.Text>
-    </View>
-  );
-};
+import LeftActions from './LeftActions.js';
 
-const ClauseNum = (props) => {
+// const LeftActions = ({ progress, dragX, onPress }) => {
+//   const scale = dragX.interpolate({
+//     inputRange: [0, 100],
+//     outputRange: [0, 1],
+//     extrapolate: 'clamp',
+//   });
+//   return (
+//     <TouchableOpacity onPress={onPress}>
+//       <View style={styles.leftActions}>
+//         <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
+//           Add to Bookmark
+//         </Animated.Text>
+//       </View>
+//     </TouchableOpacity>
+//   );
+// };
+
+const ClauseNum = ({ clause, onSwipeFromLeft }) => {
   const [savedClause, addClause] = useContext(ClauseContext);
   function AddClause() {
-    console.log('I was clicked!!!!!!!', props);
-
-    addClause([
-      ...savedClause,
-      { clause: props.clause.clause, text: props.clause.text },
-    ]);
+    addClause([...savedClause, { clause: clause.clause, text: clause.text }]);
   }
 
   return (
-    <Swipeable renderLeftActions={LeftActions} onSwipeableLeftOpen={AddClause}>
+    <Swipeable
+      renderLeftActions={(progress, dragX, onPress) => (
+        <LeftActions
+          progress={progress}
+          dragX={dragX}
+          onPress={AddClause}
+          text={'add to bookmark'}
+          color="green"
+        />
+      )}
+    >
       <View style={styles.box}>
-        <Text style={styles.text}>{props.clause.clause}</Text>
+        <Text style={styles.text}>{clause.clause}</Text>
 
-        <Text style={styles.text}>{props.clause.text}</Text>
+        <Text style={styles.text}>{clause.text}</Text>
       </View>
     </Swipeable>
   );
@@ -59,7 +74,8 @@ const styles = StyleSheet.create({
   leftActions: {
     backgroundColor: 'green',
     justifyContent: 'center',
-    flex: 1,
+    // flex: 1,
+    alignItems: 'flex-end',
   },
   actionText: {
     color: 'white',
