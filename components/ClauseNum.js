@@ -41,7 +41,7 @@ const ClauseNum = ({ clause, onSwipeFromLeft }) => {
           progress={progress}
           dragX={dragX}
           onPress={AddClause}
-          text={'add to bookmark'}
+          text={'Add to bookmark'}
           color="green"
         />
       )}

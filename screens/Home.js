@@ -50,7 +50,7 @@ const Home = ({ navigation }) => {
             });
           }}
         >
-          <Text>Lanuch Modal</Text>
+          <Text style={styles.bookmark}>Open saved clauses </Text>
         </TouchableOpacity>
       }
     />
@@ -111,6 +111,14 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 10,
+  },
+  bookmark: {
+    padding: 10,
+    borderRadius: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    backgroundColor: 'lightgrey',
   },
 });
 export default Home;
