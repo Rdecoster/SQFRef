@@ -4,14 +4,10 @@ import ClauseContext from './ClauseContext';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import LeftActions from './LeftActions.js';
-const SaveClause = ({ clause, onSwipeFromLeft }) => {
+const SaveClause = ({ clause, onSwipeFromLeft, deleteFunction }) => {
   function AddClause() {
-    console.log('I was clicked!!!!!!!');
-
-    // addClause([
-    //   ...savedClause,
-    //   { clause: props.clause.clause, text: props.clause.text },
-    // ]);
+    console.log('I was clicked!!!!!!!', clause.id);
+    deleteFunction(clause.id);
   }
 
   return (
@@ -22,7 +18,7 @@ const SaveClause = ({ clause, onSwipeFromLeft }) => {
           dragX={dragX}
           onPress={AddClause}
           text={'Delete'}
-          color="green"
+          color="red"
         />
       )}
     >

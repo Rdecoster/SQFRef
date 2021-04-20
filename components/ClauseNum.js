@@ -31,7 +31,14 @@ import LeftActions from './LeftActions.js';
 const ClauseNum = ({ clause, onSwipeFromLeft }) => {
   const [savedClause, addClause] = useContext(ClauseContext);
   function AddClause() {
-    addClause([...savedClause, { clause: clause.clause, text: clause.text }]);
+    addClause([
+      ...savedClause,
+      {
+        clause: clause.clause,
+        text: clause.text,
+        id: clause.clause + clause.text.length,
+      },
+    ]);
   }
 
   return (

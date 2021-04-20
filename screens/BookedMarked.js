@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -8,10 +8,25 @@ import {
 } from 'react-native';
 import ClauseNum from '../components/ClauseNum.js';
 import SaveClause from '../components/SaveClause.js';
-const BookedMarked = (props) => {
-  console.log(props);
-  const module = props.route.params.module;
 
+const BookedMarked = (props) => {
+  console.log(props, ' props from book mark ');
+  const module = props.route.params.module;
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    setList(module);
+  }, [module]);
+
+  const deleteClause = (id) => {
+    console.log(id, 'my list from the delete function!!!!!!!!!!!');
+    list.forEach((item, i) => {
+      if (item.id === id) {
+        list.splice(i, 1);
+      }
+    });
+    console.log(list, 'after delete');
+    setList(list);
+  };
   const DATA = module;
   console.log(DATA, 'from section module.js');
 
@@ -21,7 +36,12 @@ const BookedMarked = (props) => {
         data={DATA}
         renderItem={({ item }) => (
           <TouchableOpacity>
-            <SaveClause clause={item} name={module[item]} data={module[item]} />
+            <SaveClause
+              clause={item}
+              name={module[item]}
+              data={module[item]}
+              deleteFunction={deleteClause}
+            />
           </TouchableOpacity>
         )}
         style={styles.container}
